@@ -4,39 +4,43 @@ import java.util.Objects;
 
 public class CellSnapshot {
 
-    private final CellSnapShotStatus status;
+    private final CellSnapshotStatus status;
     private final int nearbyLandMineCount;
 
-    private CellSnapshot(CellSnapShotStatus status, int nearbyLandMineCount) {
+    private CellSnapshot(CellSnapshotStatus status, int nearbyLandMineCount) {
         this.status = status;
         this.nearbyLandMineCount = nearbyLandMineCount;
     }
 
-    public static CellSnapshot of(CellSnapShotStatus status, int nearbyLandMineCount) {
+    public static CellSnapshot of(CellSnapshotStatus status, int nearbyLandMineCount) {
         return new CellSnapshot(status, nearbyLandMineCount);
     }
 
     public static CellSnapshot ofEmpty() {
-        return of(CellSnapShotStatus.EMPTY, 0);
+        return of(CellSnapshotStatus.EMPTY, 0);
     }
 
     public static CellSnapshot ofFlag() {
-        return of(CellSnapShotStatus.FLAG, 0);
+        return of(CellSnapshotStatus.FLAG, 0);
     }
 
     public static CellSnapshot ofLandMine() {
-        return of(CellSnapShotStatus.LAND_MINE, 0);
+        return of(CellSnapshotStatus.LAND_MINE, 0);
     }
 
     public static CellSnapshot ofNumber(int nearbyLandMineCount) {
-        return of(CellSnapShotStatus.NUMBER, nearbyLandMineCount);
+        return of(CellSnapshotStatus.NUMBER, nearbyLandMineCount);
     }
 
     public static CellSnapshot ofUnchecked() {
-        return of(CellSnapShotStatus.UNCHECKED, 0);
+        return of(CellSnapshotStatus.UNCHECKED, 0);
     }
 
-    public CellSnapShotStatus getStatus() {
+    public boolean isSameStatus(CellSnapshotStatus cellSnapshotStatus) {
+        return this.status == cellSnapshotStatus;
+    }
+
+    public CellSnapshotStatus getStatus() {
         return status;
     }
 

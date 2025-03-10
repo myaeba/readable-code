@@ -1,3 +1,4 @@
+
 package cleancode.minesweeper.tobe.io;
 
 import cleancode.minesweeper.tobe.GameBoard;
@@ -18,7 +19,6 @@ public class ConsoleOutputHandler {
         String alphabets = generateColAlphabets(board);
 
         System.out.println("    " + alphabets);
-
         for (int row = 0; row < board.getRowSize(); row++) {
             System.out.printf("%2d  ", row + 1);
             for (int col = 0; col < board.getColSize(); col++) {
@@ -60,4 +60,5 @@ public class ConsoleOutputHandler {
     public void printSimpleMessage(String message) {
         System.out.println(message);
     }
+
 }

@@ -1,19 +1,19 @@
+
 package cleancode.minesweeper.tobe;
 
 import cleancode.minesweeper.tobe.gamelevel.GameLevel;
 import cleancode.minesweeper.tobe.io.ConsoleInputHandler;
 import cleancode.minesweeper.tobe.io.ConsoleOutputHandler;
 
-public class Mineswepper {
+public class Minesweeper {
 
     private final GameBoard gameBoard;
     private final BoardIndexConverter boardIndexConverter = new BoardIndexConverter();
     private final ConsoleInputHandler consoleInputHandler = new ConsoleInputHandler();
     private final ConsoleOutputHandler consoleOutputHandler = new ConsoleOutputHandler();
-
     private int gameStatus = 0; // 0: 게임 중, 1: 승리, -1: 패배
 
-    public Mineswepper(GameLevel gameLevel) {
+    public Minesweeper(GameLevel gameLevel) {
         gameBoard = new GameBoard(gameLevel);
     }
 
@@ -22,7 +22,6 @@ public class Mineswepper {
         gameBoard.initializeGame();
 
         while (true) {
-
             try {
                 consoleOutputHandler.showBoard(gameBoard);
 
@@ -30,14 +29,13 @@ public class Mineswepper {
                     consoleOutputHandler.printGameWinningComment();
                     break;
                 }
-
                 if (doesUserLoseTheGame()) {
                     consoleOutputHandler.printGameLosingComment();
                     break;
                 }
 
                 String cellInput = getCellInputFromUser();
-                String userActionInput = getUserActionInput();
+                String userActionInput = getUserActionInputFromUser();
                 actOnCell(cellInput, userActionInput);
             } catch (GameException e) {
                 consoleOutputHandler.printExceptionMessage(e);
@@ -83,7 +81,7 @@ public class Mineswepper {
         return userActionInput.equals("2");
     }
 
-    private String getUserActionInput() {
+    private String getUserActionInputFromUser() {
         consoleOutputHandler.printCommentForUserAction();
         return consoleInputHandler.getUserInput();
     }

@@ -1,13 +1,13 @@
 package cleancode.minesweeper.tobe;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import cleancode.minesweeper.tobe.gamelevel.*;
 
 public class GameApplication {
 
     public static void main(String[] args) {
-        Mineswepper mineswepper = new Mineswepper();
+        GameLevel gameLevel = new Beginner();
+
+        Mineswepper mineswepper = new Mineswepper(gameLevel);
         mineswepper.run();
     }
 
